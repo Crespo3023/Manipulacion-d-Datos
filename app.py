@@ -25,25 +25,29 @@ def crear_usuario():
 
     nombre = data.get('nombre')
     correo = data.get('correo')
-
+    
+   # Validar que se proporcionen ambos datos
     if not nombre or not correo:
         return jsonify({
             'Tienes un ERROR': 'Es debido tener ambos datos: nombre y correo'
         }), 400
         
     
-
+    # Verificar si el correo ya existe creando un nuevo usuario si es otra info con un id diferente
     nuevo_usuario = {
-        'id': len(usuarios) + 1,
         'nombre': nombre,
-        'correo': correo
+        'correo': correo,
+        'id': len(usuarios) + 1
+        
+        
     }
     
+    # Agregar el nuevo usuario a la lista de usuarios
     usuarios.append(nuevo_usuario)
     
     return jsonify({
     "mensaje": "Usuario creado exitosamente!",
-    "usuario": nuevo_usuario }), 201
+    " Informacion del usuario": nuevo_usuario }), 201
     
     
 
